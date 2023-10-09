@@ -2,10 +2,12 @@ from PIL import Image, ImageDraw, ImageFont
 import os
 
 name_list = ["Rajdeep Bisai", "Swarnendu Bhandari", "Mayukh Mandal"]
+certificate_title = "Certificate of Participation"
 
 # Path to your certificate template and font file
 certificate_template_path = "cert.png"
 font_path = "fonts\BRUSHSCI.TTF"
+title_font_path = "fonts\kepler_std_bold_semicondensed_subhead.otf"
 
 # Output directory for saving certificates
 output_directory = "certificates"
@@ -28,6 +30,12 @@ for name in name_list:
 
         # Write name on the certificate
         d.text(location, name, fill=text_color, font=font)
+
+        # Set certificate title, location, and font size
+        font_size = 120
+        font = ImageFont.truetype(title_font_path, font_size)
+        location = (600 + 25*(19 - len(certificate_title)), 220)
+        d.text(location, certificate_title, fill=text_color, font=font)
 
         # Save the certificate as PDF
         certificate_filename = f"certificate_{name}.pdf"
