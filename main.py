@@ -1,8 +1,15 @@
 from PIL import Image, ImageDraw, ImageFont
 import os
 import uuid
+import pandas as pd
 
-name_list = ["Rajdeep Bisai", "Swarnendu Bhandari", "Mayukh Mandal"]
+try:
+    data = pd.read_excel("Data.xlsx")
+    name_list = pd.Series(data["name"])
+except Exception as e:
+    print(e)
+
+
 certificate_title = "Certificate of Participation"
 
 # Path to your certificate template and font file
@@ -39,15 +46,16 @@ for name in name_list:
         d.text(location, certificate_title, fill=text_color, font=font)
 
         # Set Unique Id, location, and font size
-        unique_id = f"Certificate ID: {str(uuid.uuid4())}"
+        id = str(uuid.uuid4())
+        unique_id = f"Certificate ID: {id}"
         font_size = 28
-        text_color = (150, 150, 150)
+        text_color = (100, 100, 100)
         font = ImageFont.truetype(title_font_path, font_size)
         location = (700, 1300)
         d.text(location, unique_id, fill=text_color, font=font)
 
         # Save the certificate as PDF
-        certificate_filename = f"certificate_{name}.pdf"
+        certificate_filename = f"{name}_{id}.pdf"
         certificate_filepath = os.path.join(
             output_directory, certificate_filename)
         im.save(certificate_filepath)
