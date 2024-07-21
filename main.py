@@ -14,8 +14,8 @@ certificate_title = "Certificate of Participation"
 
 # Path to your certificate template and font file
 certificate_template_path = "cert.png"
-font_path = "fonts\BRUSHSCI.TTF"
-title_font_path = "fonts\kepler_std_bold_semicondensed_subhead.otf"
+font_path = "fonts/BRUSHSCI.TTF"
+title_font_path = "fonts/kepler_std_bold_semicondensed_subhead.otf"
 
 # Output directory for saving certificates
 output_directory = "certificates"
